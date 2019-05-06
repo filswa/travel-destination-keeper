@@ -13,8 +13,8 @@ class Map extends React.Component{
 
   initMap = () => {
     let map = new window.google.maps.Map(document.getElementById("map"), {
-        center: {lat: 50, lng: 20},
-        zoom: 8
+        center: {lat: 35.896860, lng: 14.447616},
+        zoom: 12
       });
   }
 

@@ -1,6 +1,4 @@
 import React from 'react'
-import PlaceContainer from './PlaceContainer'
-import Map from './Map'
 
 class SearchBar extends React.Component {
 
@@ -15,13 +13,9 @@ class SearchBar extends React.Component {
 
 	handleChange = (event) => {
 		const {name, value} = event.target
-		console.log(this.state.searchText)
 		this.setState({ [name]: value})
 	}
 
-	handleSubmit = (event) =>{
-		
-	}
 	render(){
 
 		return(
@@ -34,11 +28,6 @@ class SearchBar extends React.Component {
 						value={this.state.searchText}
 						onChange={this.handleChange}
 					/>
-					<button
-						id="addButton"
-						type="submit"
-						onSubmit={this.handleSubmit}
-					>Add</button>
 			</div>
 		)
 	}

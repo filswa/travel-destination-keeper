@@ -6,6 +6,7 @@ class PlaceContainer extends React.Component {
 	constructor() {
 		super();
 		this.state = {
+      uniquePlaceId: 4,
 			places: [
         {
           id: 1,
@@ -25,6 +26,24 @@ class PlaceContainer extends React.Component {
       ]
 		}
 	}
+
+  // Not working, beacuse searchBar text value is stored in SearchBar's state
+  // TODO: design better partent/child startegy
+  handleAddPlace = (event) => {
+    const {value} = event.target
+    console.log(value)
+    const updatedPlaces = this.state.places.concat({
+      id: this.state.uniquePlaceId,
+      name: "Your favourite place :)",
+      // pos value hardcoded for now, to be replaced with data from googleMapsAPI
+      pos: {lat: 51.476883, lon: 0.0}
+    })
+
+    this.setState({
+      uniquePlaceId: this.state.uniquePlaceId+1,
+      places:updatedPlaces
+    })
+  }
 
   handleDelete = (index) => {
     const places = Object.assign([], this.state.places)
@@ -46,6 +65,11 @@ class PlaceContainer extends React.Component {
         <div className="places">
           <h1>Places to Visit</h1>
           {places}
+        <button
+          id="addButton"
+          type="submit"
+          onClick={this.handleAddPlace}
+        >Add</button>
         </div>
   	)
   }
