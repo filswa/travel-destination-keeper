@@ -26,19 +26,26 @@ class PlaceContainer extends React.Component {
 		}
 	}
 
+  handleDelete = (index) => {
+    const places = Object.assign([], this.state.places)
+    places.splice(index, 1)
+    this.setState({places:places})
+  }
+
   render(){
   	const places =
-  		this.state.places.map(place =>
+  		this.state.places.map((place, index) =>
   			<Place
   				key={place.id}
   				name={place.name}
           pos={place.pos}
+          handleDelete={this.handleDelete.bind(this, index)}
   			/>)
 
   	return (
         <div className="places">
-        <h1>Places to Visit</h1>
-            {places}
+          <h1>Places to Visit</h1>
+          {places}
         </div>
   	)
   }
