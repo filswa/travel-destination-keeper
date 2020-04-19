@@ -19,7 +19,7 @@ class Map extends React.Component{
   }
 
   renderMap = () => {
-    loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyCfYxH4JekimPUiO1gqHgvVSLI951bz0b8&callback=initMap&libraries=places")
+    loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyCfYxH4JekimPUiO1gqHgvVSLI951bz0b8&libraries=places&callback=initMap")
     window.initMap = this.initMap
   }
 
