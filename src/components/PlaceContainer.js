@@ -1,12 +1,13 @@
 import React from 'react';
 import Place from './Place'
+import SearchBar from './SearchBar';
+import SearchInput from './SearchInput';
 
 class PlaceContainer extends React.Component {
 
 	constructor() {
 		super();
 		this.state = {
-      searchText: "BIESZCZADY",
       uniquePlaceId: 4,
 			places: [
         {
@@ -33,16 +34,15 @@ class PlaceContainer extends React.Component {
 		this.setState({ [name]: value})
 	}
 
-  handleAddPlace = () => {
+  handleAddPlace = (value) => {
     const updatedPlaces = this.state.places.concat({
       id: this.state.uniquePlaceId,
-      name: this.state.searchText,
+      name: value,
       // pos value hardcoded for now, to be replaced with data from googleMapsAPI
       pos: {lat: 51.476883, lon: 0.0}
     })
 
     this.setState({
-      searchText: "",
       uniquePlaceId: this.state.uniquePlaceId + 1,
       places: updatedPlaces
     })
@@ -66,22 +66,10 @@ class PlaceContainer extends React.Component {
 
   	return (
       <div>
-        <div id="searchBarDiv">
-          <input
-            id="searchBar"
-            type="search"
-            name="searchText"
-            placeholder="Search for place..."
-            value={this.state.searchText}
-            onChange={this.handleChange}
-          />
-          
-          <button
-            id="addButton"
-            type="submit"
-            onClick={this.handleAddPlace}
-          >Add</button>
-			  </div>
+        <SearchInput 
+          googleCallbackName={this.props.googleCallbackName}
+          handleAddPlace={this.handleAddPlace}
+        />
       
         <div className="places">
           <h1>Places to Visit</h1>
