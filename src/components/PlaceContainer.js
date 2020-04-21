@@ -1,7 +1,6 @@
 import React from 'react';
 import Place from './Place'
 import SearchBar from './SearchBar';
-import SearchInput from './SearchInput';
 
 class PlaceContainer extends React.Component {
 
@@ -66,8 +65,8 @@ class PlaceContainer extends React.Component {
 
   	return (
       <div>
-        <SearchInput 
-          googleCallbackName={this.props.googleCallbackName}
+        <SearchBar 
+          autocomplete ={this.props.autocomplete}
           handleAddPlace={this.handleAddPlace}
         />
       
