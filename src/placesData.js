@@ -11,8 +11,19 @@ const placesData = [
     },
     {
         id: 3,
+        name: "Cape Canaveral, Florida, US",
+        pos: {lat: 28.39221, lng: -80.60771}
+        //28.3922182, lon: -80.60771319999999
+    },
+    {
+        id: 4,
         name: "Morijim, Goa, India",
         pos: {lat: 15.620607, lng: 73.731076}
+    },
+    {
+        id: 5,
+        name: "Costa Rica",
+        pos: {lat: 9.74891, lng: -83.753428}
     }
 ]
 
