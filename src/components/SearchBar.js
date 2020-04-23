@@ -69,7 +69,7 @@ class SearchBar extends React.Component {
 					id="searchBar"
 					type="search"
 					name="query"
-					placeholder="Your next holiday destination..."
+					placeholder="Search for places to visit..."
 					value={this.state.query}
 					onChange={this.handleChange}
 				/>
