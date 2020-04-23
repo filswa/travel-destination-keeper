@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6723fdaca41b3109eb74f4b2cd420877",
+    "revision": "cac4532ef3bce1fe2e8a1310fd68a232",
     "url": "/travel-destination-keeper/index.html"
   },
   {
-    "revision": "a70f97e13b7219e7cf36",
+    "revision": "cf89c0f127c1f51b6b47",
     "url": "/travel-destination-keeper/static/css/main.4c7d8acd.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/travel-destination-keeper/static/js/2.8fdffbf2.chunk.js"
   },
   {
-    "revision": "a70f97e13b7219e7cf36",
-    "url": "/travel-destination-keeper/static/js/main.a52d36b8.chunk.js"
+    "revision": "cf89c0f127c1f51b6b47",
+    "url": "/travel-destination-keeper/static/js/main.2b0eeb8d.chunk.js"
   },
   {
     "revision": "a45eac2b9ae3a4ec209f",
