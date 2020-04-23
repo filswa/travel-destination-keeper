@@ -4,7 +4,7 @@ class Map extends React.Component{
 	constructor(props){
 		super(props)
 		this.state={
-      map: this.props.map
+      map: this.props.map,
     }
 	}
 
@@ -12,13 +12,17 @@ class Map extends React.Component{
 		setTimeout(()=>{
 			this.setState({
 				map: this.props.map
-			});
-		}, 500)
-	}
-
+      });
+		}, 1000)
+  }
+  
 	render(){
 		return(
-			<div id="map"></div>
+			<div>
+        <div id="map">
+          
+        </div>
+      </div>      
 		)
 	}
 }

@@ -1,12 +1,13 @@
 import React from 'react'
+import { geocodeByAddress, getLatLng } from '../util/GeocodeByAdress';
 
 class SearchBar extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = {
 			autocomplete: this.props.autocomplete,
-			city: "",
 			query: "",
+			pos: {}
 		}
 	}
 
@@ -14,11 +15,10 @@ class SearchBar extends React.Component {
 		setTimeout(()=>{
 			this.setState({
 				autocomplete: this.props.autocomplete,
-				city: "",
 				query: ""
 			});
 			this.state.autocomplete.addListener('place_changed', this.handlePlaceSelect); 
-		}, 500)
+		}, 1000)
 	}
 
 	handleChange = (event) => {
@@ -27,22 +27,37 @@ class SearchBar extends React.Component {
 	}
 
 	handleClick = () => {
-		this.props.handleAddPlace(this.state.query)
+		let placeData = {
+			name: this.state.query,
+			pos: this.state.pos
+		}
+		this.props.handleAddPlace(placeData)
 		this.setState({
 			query: "",
+			pos: {}
 		})
 	}
 
-	handlePlaceSelect = () => {
-		const addressObject = this.state.autocomplete.getPlace();
-		const address = addressObject.address_components;
-		
-		// TODO: get LAT/LON and save to state
+	getPos = async address => {
+		let result = await geocodeByAddress(address)
+		.then(async geocode => {
+			return await getLatLng(geocode[0])
+		})
+		.then(latLng => {
+			return latLng
+		})
+		return result
+	}
+
+	handlePlaceSelect = async () => {
+		const address = this.state.autocomplete.getPlace().formatted_address;
+		const pos = await this.getPos(address)
+
 		if (address) {
 		  this.setState(
 			{
-			  city: address[0].long_name,
-			  query: addressObject.formatted_address,
+			  query: address,
+			  pos: pos
 			})
 		}
 	}

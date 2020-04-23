@@ -7,8 +7,8 @@ function PlaceList(props){
   			<Place
   				key={place.id}
   				name={place.name}
-          pos={place.pos}
-          handleDelete={props.handleDelete}
+          		pos={place.pos}
+          		handleDelete={props.handleDelete}
   			/>)
 
   	return (
