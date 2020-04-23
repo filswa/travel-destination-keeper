@@ -3,7 +3,7 @@ import React from "react"
 const Place = (props) => {
     return (
         <div className="place">
-            <p  style={{cursor: "pointer"}}
+            <p  style={{cursor: "pointer", width: '100%'}}
                 onClick={() => {
                     let currentZoom = props.map.getZoom()
                     let offset = 0;
@@ -28,9 +28,9 @@ const Place = (props) => {
                     }, 3500-offset)
                 }
             }>
-              {props.name}
-              <button onClick={props.handleDelete} style={{position: 'absolute', right: '12%'}}>X</button>
+              {props.name}              
             </p>
+            <button onClick={props.handleDelete} style={{position: 'relative', marginTop: '5%', width: '8%', height: '50%'}}>X</button>
         </div>
     )
 }
