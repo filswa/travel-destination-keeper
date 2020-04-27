@@ -15,17 +15,25 @@ const Place = (props) => {
                     if(currentZoom > 4){
                         setTimeout(()=>{
                             props.map.setZoom(4)
-                        }, 900-offset)                        
+                        }, 900-offset)
                     } else {offset = 1600}
+                    if(currentZoom > 3){
+                        setTimeout(()=>{
+                            props.map.setZoom(2)
+                        }, 1600-offset)
+                    } else {offset = 1900}
                     setTimeout(() => {
                         props.map.panTo(props.pos)
-                    }, 1700-offset)
+                    }, 2000-offset)
+                    setTimeout(() => {
+                        props.map.setZoom(4)
+                    }, 2900-offset)
                     setTimeout(() => {
                         props.map.setZoom(8)
-                    }, 2600-offset)
+                    }, 3200-offset)
                     setTimeout(() => {
                         props.map.setZoom(12)
-                    }, 3500-offset)
+                    }, 4100-offset)
                 }
             }>
               {props.name}              

@@ -29,12 +29,13 @@ const  WelcomeInfo = () => {
 export default WelcomeInfo;
 
 function openOverlay() {
-  var canvas = document.createElement("canvas");
+  let canvas = document.createElement("canvas");
   canvas.setAttribute("id", "canvas")
+
   canvas.className = "highlight";
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  var ctx = canvas.getContext("2d");
+  let ctx = canvas.getContext("2d");
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   document.body.appendChild(canvas);
   window.overlayCanvas = canvas;
