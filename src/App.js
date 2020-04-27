@@ -1,12 +1,17 @@
 import React from 'react';
 import './App.css';
 
+import WelcomeInfo from './components/WelcomeInfo';
 import MainContainer from './components/MainContainer';
-
 
 class App extends React.Component {
   render(){
-    return <MainContainer />
+    return (
+    	<div>
+	    	<WelcomeInfo />
+	    	<MainContainer />
+    	</div>
+    )
   }
 }
 
