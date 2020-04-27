@@ -30,6 +30,7 @@ export default WelcomeInfo;
 
 function openOverlay() {
   var canvas = document.createElement("canvas");
+  canvas.setAttribute("id", "canvas")
   canvas.className = "highlight";
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -37,13 +38,15 @@ function openOverlay() {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   document.body.appendChild(canvas);
   window.overlayCanvas = canvas;
+  canvas.onclick = closeOverlay;
 }
 
 function closeOverlay() {
-  let elem = document.getElementById("welcome")
+  let welcomeDiv = document.getElementById("welcome")
+  let canvas = document.getElementById("canvas")
+
   window.overlayCanvas.style.opacity = 0;
   delete window.overlayCanvas;
-  setTimeout(function() {
-    elem.parentNode.removeChild(elem);
-  }, 0);
+  canvas.parentNode.removeChild(canvas)
+  welcomeDiv.parentNode.removeChild(welcomeDiv);
 }
