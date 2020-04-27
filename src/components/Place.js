@@ -30,7 +30,7 @@ const Place = (props) => {
             }>
               {props.name}              
             </p>
-            <button onClick={props.handleDelete} style={{position: 'relative', marginTop: '5%', width: '8%', height: '50%'}}>X</button>
+            <button className="xButton" onClick={props.handleDelete} style={{position: 'relative', border: '0px', background: 'none', marginTop: '2%', left: '5%'}}>X</button>
         </div>
     )
 }
