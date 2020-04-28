@@ -1,17 +1,17 @@
-Hello!
+## Welcome to travel destination keeper!
 
-Below You can find quick readme! and comments on this assignment.
+It is a simple app that allows you to search for places and add them to your "to visit" list. Feel free to move around and explore! You can move between places by selecting a place on the list.
 
-This project was created with create-react-app.
-To start the app, clone this repository and run
-### 'npm start'
- in node.js command prompt.
+This app is a product of my recent skill boosting excercise in React that I planned for myself as an effective way to learn building web apps. I took the approach of learning by doing and decided not to use any tutorials or ready node packages for google maps components. Just docs and stackoverflow.
 
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The app uses **Google Maps Javascript API** as a provider for map, autocomplete and marker functionalities. It is developed using pure React. Decision to not use redux was aimed to enforce a strong design of parent/children strategy, plan data flow and distribute state adequately.
 
-Issues to fix:
-- Initialize googleMapsAPI and placesAPI properly, so google.maps is available to every component, especially for autocomplete functionality, which at the moment is not implemented in SearchBar component
+It is available on: https://filswa.github.io/travel-destination-keeper/
 
-- Redesign components relations to pass data in a better way. e.g. make Map component SearchBar's child, so when new location is being searched, it can be passed as props to re-center the map according to searched query?
-
-- Work on stylings, especially responsivity for search bar and add button
+Possible plans for future include:
+- refactor using redux
+- refactor using hooks
+- refactor using React Context API
+- add storing user data in local storage
+- add tests using jest
+- add responsivity

@@ -7,7 +7,7 @@ h1{
 }
 
 html, body {
-    font-family: sans-serif;
+    font-family: 'Quicksand', sans-serif;
     height: 100vh;
     margin: 0;
     padding: 0;
@@ -15,6 +15,7 @@ html, body {
 
 #searchBar {
     background-color: #fff;
+    font-family: 'Quicksand', sans-serif;
     font-size: 15px;
     font-weight: 300;
     margin: 5px 10px 5px 0;
@@ -24,6 +25,7 @@ html, body {
     top: 5%;
     left: 33%;
     border: 1px solid #ddd;
+    border-radius: 5px;
     z-index: 1;
 }
 
@@ -35,15 +37,16 @@ html, body {
     padding: 12px 20px;
     background-color: dodgerblue;
     border: 0px solid #ddd;
+    border-radius: 5px;
     color: white;
     z-index: 1;
     position: fixed;
-    top: 5.5%;
+    top: 5.8%;
     left: 67%;
 }
 
 #addButton:hover {
-  background-color: tomato;
+  background-color: #0466c8;
 }
 
 #addButton:active {
@@ -54,6 +57,7 @@ html, body {
 .places {
     background-color: white;
     position: fixed;
+    max-height: 50%;
     top: 25%;
     left: 3%;
     z-index: 1;
@@ -63,7 +67,9 @@ html, body {
     flex-direction: column;
     align-items: left;
     border: 1px solid #efefef;
+    border-radius: 5px;
     padding: 20px 30px 30px 30px;
+    overflow-y: scroll;
 }
 
 .place {
@@ -76,4 +82,56 @@ html, body {
     font-weight: 100;
     font-size: 16px;
     color: #333333;
+}
+
+.xButton {
+    position: 'absolute';
+    right: 2%;
+    top: 3%;
+    border: 0px;
+    background: none;
+    font-family: 'Quicksand';
+    font-weight: 400;
+    font-size: 1.1em;
+}
+
+.xButton:hover{
+    cursor: pointer;    
+}
+
+#welcome {
+    background-color: white;
+    position: fixed;
+    font-family: 'Quicksand', sans-serif;
+    top: 15%; bottom: 15%;  left: 20%; right: 20%;
+    z-index: 2;
+    margin: auto;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    border: 1px solid #efefef;
+    border-radius: 5px;
+    padding: 20px 30px 30px 30px;
+    overflow-y: scroll;
+}
+
+canvas.highlight {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  opacity: 0.5;
+  -webkit-transition: opacity 250ms ease;
+  transition: opacity 250ms ease;
+  -webkit-animation: canvasFade 250ms ease;
+  animation: canvasFade 250ms ease;
+}
+@-webkit-keyframes canvasFade {
+  from { opacity: 0; }
+  to { opacity: 0.5; }
+}
+@keyframes canvasFade {
+  from { opacity: 0; }
+  to { opacity: 0.5; }
 }
