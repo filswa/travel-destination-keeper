@@ -14,4 +14,3 @@ Possible plans for future include:
 - refactor using React Context API
 - add storing user data in local storage
 - add tests using jest
-- add responsivity
