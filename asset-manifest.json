@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/travel-destination-keeper/static/css/main.5b86dde4.chunk.css",
-    "main.js": "/travel-destination-keeper/static/js/main.7872ea12.chunk.js",
-    "main.js.map": "/travel-destination-keeper/static/js/main.7872ea12.chunk.js.map",
+    "main.js": "/travel-destination-keeper/static/js/main.8dc23c55.chunk.js",
+    "main.js.map": "/travel-destination-keeper/static/js/main.8dc23c55.chunk.js.map",
     "runtime~main.js": "/travel-destination-keeper/static/js/runtime~main.8bdf98b3.js",
     "runtime~main.js.map": "/travel-destination-keeper/static/js/runtime~main.8bdf98b3.js.map",
-    "static/js/2.8fdffbf2.chunk.js": "/travel-destination-keeper/static/js/2.8fdffbf2.chunk.js",
-    "static/js/2.8fdffbf2.chunk.js.map": "/travel-destination-keeper/static/js/2.8fdffbf2.chunk.js.map",
+    "static/js/2.6787b1d6.chunk.js": "/travel-destination-keeper/static/js/2.6787b1d6.chunk.js",
+    "static/js/2.6787b1d6.chunk.js.map": "/travel-destination-keeper/static/js/2.6787b1d6.chunk.js.map",
     "index.html": "/travel-destination-keeper/index.html",
-    "precache-manifest.44d3b20f4117c416602034b082c8a7f2.js": "/travel-destination-keeper/precache-manifest.44d3b20f4117c416602034b082c8a7f2.js",
+    "precache-manifest.07ccf7936d9c48113654a88a87b7a68b.js": "/travel-destination-keeper/precache-manifest.07ccf7936d9c48113654a88a87b7a68b.js",
     "service-worker.js": "/travel-destination-keeper/service-worker.js",
     "static/css/main.5b86dde4.chunk.css.map": "/travel-destination-keeper/static/css/main.5b86dde4.chunk.css.map"
   }
