@@ -19,7 +19,7 @@ class MainContainer extends React.Component {
     // Google Maps Init
     initMaps = () => {
         let map = new window.google.maps.Map(document.getElementById("map"), {
-            center: {lat: 46.35355, lng: 19.447616},
+            center: {lat: 40.35355, lng: -50.447616},
             zoom: 3,
         });
         map.setOptions({minZoom: 3, maxZoom: 15})
