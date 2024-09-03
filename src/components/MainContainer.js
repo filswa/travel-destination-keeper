@@ -1,24 +1,17 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import placesData from '../placesData'
 import PlaceContainer from "./PlaceContainer"
 import Map from "./Map"
 
-class MainContainer extends React.Component {
-    constructor(){
-        super()
-        this.state = {
-          map: null,
-          autocomplete: null,
-          markers: [],
-          uniquePlaceId: 4,
-          places: placesData
-        }
-        this.loadMaps();
-    }
+const MainContainer = () => {
+    const [map, setMap] = useState(null);
+    const [autocomplete, setAutocomplete] = useState(null);
+    const [markers, setMarkers] = useState([]);
+    const [places, setPlaces] = useState(placesData);
+    const [uniquePlaceId, setUniquePlaceId] = useState(placesData.length);
 
-    // Google Maps Init
-    initMaps = () => {
-        let map = new window.google.maps.Map(document.getElementById("map"), {
+    async function initMaps() {
+        let map = await new window.google.maps.Map(document.getElementById("map"), {
             center: {lat: 40.35355, lng: -50.447616},
             zoom: 3,
         });
@@ -27,24 +20,21 @@ class MainContainer extends React.Component {
         let autocomplete = new window.google.maps.places.Autocomplete(document.getElementById("searchBar"))    
         autocomplete.setFields(['address_components', 'formatted_address']);
 
-        const markers = this.state.places.map((place) => {
-            return this.addMarker(place, map)
-        })
+        const markers = places.map((place) => {
+            return addMarker(place, map)
+        });
         
-        this.setState({
-            map: map,
-            autocomplete: autocomplete,
-            markers: markers
-        },)
+        setMap(map);
+        setAutocomplete(autocomplete);
+        setMarkers(markers);
     }
 
-    loadMaps = () => {
-        loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyCqg_-lwa3fsOr7a1cDpkr1RJMet2nwXQE&language=en&libraries=places&callback=initMaps")
-        window.initMaps = this.initMaps
-    }
+    useEffect(() => {
+        loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyCqg_-lwa3fsOr7a1cDpkr1RJMet2nwXQE&language=en&loading=async&libraries=places&callback=initMaps")
+        window.initMaps = initMaps;
+    },[]);
 
-    // Marker handling functions
-    addMarker = (place, map) => {
+    const addMarker = (place, map) => {
         let marker = {
             id: place.id,
             marker: new window.google.maps.Marker({
@@ -64,16 +54,13 @@ class MainContainer extends React.Component {
             map.panTo(place.pos)
         });
 
-        this.setState(prevState => ({
-            markers: [...prevState.markers, marker]
-        }))
+        setMarkers([...markers, marker])
         return marker;
     }
 
-    removeMarker = (id) => {
-        console.log(id)
-        const markers = [...this.state.markers]
-        const updatedMarkers = markers.filter((element)=>{
+    const removeMarker = (id) => {
+        const currentMarkers = [...markers]
+        const updatedMarkers = currentMarkers.filter((element)=>{
             if(element.id === id){
                 element.marker.setMap(null)
                 return false
@@ -83,56 +70,45 @@ class MainContainer extends React.Component {
         return updatedMarkers
     }
 
-    // Places state handling functions
-    handleChange = (event) => {
-        const {name, value} = event.target
-        this.setState({ [name]: value})
-    }
-
-    handleAddPlace = (placeData) => {
+    const handleAddPlace = (placeData) => {
         let place = {
-            id: this.state.uniquePlaceId,
+            id: uniquePlaceId+1,
             name: placeData.name,
             pos: placeData.pos
         }
-        const updatedPlaces = [...this.state.places, place]
+        const updatedPlaces = [...places, place]
 
-        this.setState({
-            uniquePlaceId: this.state.uniquePlaceId + 1,
-            places: updatedPlaces
-        }, () => this.addMarker(place, this.state.map))
+        setUniquePlaceId(uniquePlaceId+1);
+        setPlaces(updatedPlaces);
+        addMarker(place, map);
     }
 
-    handleDeletePlace = (index) => {
-        const updatedPlaces = [...this.state.places]
-        const updatedMarkers = this.removeMarker(updatedPlaces[index].id)
+    const handleDeletePlace = (index) => {
+        const updatedPlaces = [...places];
+        const updatedMarkers = removeMarker(updatedPlaces[index].id);
 
-        updatedPlaces.splice(index, 1)
+        updatedPlaces.splice(index, 1);
 
-        this.setState({
-            places: updatedPlaces,
-            markers: updatedMarkers
-        })
+        setPlaces(updatedPlaces);
+        setMarkers(updatedMarkers);
     }
-    
-      render(){
-        return(
-          <main>
-            <PlaceContainer 
-                map={this.state.map}
-                autocomplete={this.state.autocomplete}
-                places={this.state.places}
-                handleAddPlace={this.handleAddPlace}
-                handleDeletePlace={this.handleDeletePlace}
-            />
-            <Map
-                map={this.state.map}
-                places={this.state.places}
-                markers={this.state.markers}
-            />
-          </main>
-        )
-      }
+
+    return(
+        <main>
+          <PlaceContainer 
+              map={map}
+              autocomplete={autocomplete}
+              places={places}
+              handleAddPlace={handleAddPlace}
+              handleDeletePlace={handleDeletePlace}
+          />
+          <Map
+              map={map}
+              places={places}
+              markers={markers}
+          />
+        </main>
+      )
 }
 
 export default MainContainer
@@ -141,7 +117,7 @@ function loadScript(url){
     let index = window.document.getElementsByTagName("script")[0]
     let script = window.document.createElement("script")
     script.src = url
-    script.async = false
-    script.defer = false
+    script.async = true
+    script.defer = true
     index.parentNode.insertBefore(script, index)
   }

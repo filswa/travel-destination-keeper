@@ -1,20 +1,20 @@
 import React from 'react';
 import Place from './Place'
 
-function PlaceList(props){
-  	const places =
-  		props.places.map((place, index) =>
+const PlaceList = ({places, handleDelete}) => {
+  	const placesList =
+  		places.map((place) =>
   			<Place
   				key={place.id}
   				name={place.name}
           		pos={place.pos}
-          		handleDelete={props.handleDelete}
+          		handleDelete={handleDelete}
   			/>)
 
   	return (
         <div className="places">
           <h1>Places to Visit</h1>
-          {places}
+          {placesList}
         </div>
   	)
 }

@@ -2,27 +2,27 @@ import React from 'react';
 import Place from './Place'
 import SearchBar from './SearchBar';
 
-const  PlaceContainer = (props) => {
-  const places =
-    props.places.map((place, index) =>
+const  PlaceContainer = ({map, autocomplete, places, handleAddPlace, handleDeletePlace}) => {
+  const placesList =
+    places.map((place, index) =>
       <Place
-        map={props.map}
+        map={map}
         key={place.id}
         name={place.name}
         pos={place.pos}
-        handleDelete={props.handleDeletePlace.bind(this, index)}
+        handleDelete={handleDeletePlace.bind(this, index)}
       />)
 
   return (
     <div>
       <SearchBar 
-        autocomplete ={props.autocomplete}
-        handleAddPlace={props.handleAddPlace}
+        autocomplete ={autocomplete}
+        handleAddPlace={handleAddPlace}
       />
     
       <div className="places">
         <h1>Places to Visit</h1>
-        {places}
+        {placesList}
       </div>
     </div>
   )

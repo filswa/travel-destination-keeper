@@ -1,44 +1,42 @@
-import React from 'react'
+import React, {useState, useEffect, useCallback} from 'react'
 import { geocodeByAddress, getLatLng } from '../util/GeocodeByAdress';
 
-class SearchBar extends React.Component {
-	constructor(props){
-		super(props)
-		this.state = {
-			autocomplete: this.props.autocomplete,
-			query: "",
-			pos: {}
-		}
-	}
+const SearchBar = ({autocomplete, handleAddPlace}) => {
+	const [query, setQuery] = useState("");
+	const [pos, setPos] = useState({});
 
-	componentDidMount(){
-		setTimeout(()=>{
-			this.setState({
-				autocomplete: this.props.autocomplete,
-				query: ""
-			});
-			this.state.autocomplete.addListener('place_changed', this.handlePlaceSelect); 
+	const handlePlaceSelect = useCallback(async () => {
+		const address = autocomplete.getPlace().formatted_address;
+		const pos = await getPos(address)
+
+		if (address) {
+			setQuery(address);
+			setPos(pos);
+		}
+	}, [autocomplete])
+	
+    useEffect(() => {
+        setTimeout(()=>{
+			setQuery("");
+			autocomplete && autocomplete.addListener('place_changed', handlePlaceSelect); 
 		}, 1000)
+    },[autocomplete, handlePlaceSelect]);
+
+	const handleChange = (event) => {
+		setQuery(event.tartget);
 	}
 
-	handleChange = (event) => {
-		const {value} = event.target
-		this.setState({ query: value })
-	}
-
-	handleClick = () => {
+	const handleClick = () => {
 		let placeData = {
-			name: this.state.query,
-			pos: this.state.pos
+			name: query,
+			pos: pos
 		}
-		this.props.handleAddPlace(placeData)
-		this.setState({
-			query: "",
-			pos: {}
-		})
+		handleAddPlace(placeData);
+		setQuery("");
+		setPos({})
 	}
 
-	getPos = async address => {
+	const getPos = async address => {
 		let result = await geocodeByAddress(address)
 		.then(async geocode => {
 			return await getLatLng(geocode[0])
@@ -49,38 +47,23 @@ class SearchBar extends React.Component {
 		return result
 	}
 
-	handlePlaceSelect = async () => {
-		const address = this.state.autocomplete.getPlace().formatted_address;
-		const pos = await this.getPos(address)
-
-		if (address) {
-		  this.setState(
-			{
-			  query: address,
-			  pos: pos
-			})
-		}
-	}
-	
-	render(){
-		return(
-			<div id="searchBarDiv">
-				<input
-					id="searchBar"
-					type="search"
-					name="query"
-					placeholder="Search for places to visit..."
-					value={this.state.query}
-					onChange={this.handleChange}
-				/>
-				
-				<button
-					id="addButton"
-					type="submit"
-					onClick={this.handleClick}
-				>Add</button>
-			</div>
-		)
-	}
+	return(
+		<div id="searchBarDiv">
+			<input
+				id="searchBar"
+				type="search"
+				name="query"
+				placeholder="Search for places to visit..."
+				value={query}
+				onChange={handleChange}
+			/>
+			
+			<button
+				id="addButton"
+				type="submit"
+				onClick={handleClick}
+			>Add</button>
+		</div>
+	)
 }
 export default SearchBar
