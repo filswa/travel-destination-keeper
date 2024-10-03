@@ -20,10 +20,10 @@ const  PlaceContainer = ({map, autocomplete, places, handleAddPlace, handleDelet
         handleAddPlace={handleAddPlace}
       />
     
-      <div className="places">
+      <ul className="places">
         <h1>Places to Visit</h1>
         {placesList}
-      </div>
+      </ul>
     </div>
   )
 };

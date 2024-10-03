@@ -2,7 +2,7 @@ import React from "react"
 
 const Place = ({map, name, pos, handleDelete}) => {
     return (
-        <div className="place">
+        <li className="place">
             <p  style={{cursor: "pointer", width: '100%'}}
                 onClick={() => {
                     let currentZoom = map.getZoom()
@@ -38,8 +38,8 @@ const Place = ({map, name, pos, handleDelete}) => {
             }>
               {name}              
             </p>
-            <button className="xButton" onClick={handleDelete} style={{position: 'relative', border: '0px', background: 'none', marginTop: '2%', left: '5%'}}>X</button>
-        </div>
+            <button className="xButton" onClick={handleDelete}>X</button>
+        </li>
     )
 }
 

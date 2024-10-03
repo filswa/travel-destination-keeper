@@ -8,10 +8,10 @@ const WelcomeInfo = () => {
       onClick={closeOverlay} 
       style={{position: 'absolute', right: '2%', top: '3%', border: '0px', background: 'none', fontFamily: 'Quicksand', fontWeight: '600', fontSize: 
       '1.1em'}}> X </button>
-    <div>
+    <div className="welcomeTextContainer">
       <p>Welcome to travel destination keeper!</p>
 
-      <p>Do you like travelling? Exploring new places? Of course, we all do! :)</p>
+      <p>Do you like travelling? Exploring new places?<br></br>Of course, we all do! :)</p>
 
       <p>This simple app allows you to search for places and add them to your "to visit" list. Feel free to move around and explore!</p>
 
