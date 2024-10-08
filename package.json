@@ -4,10 +4,9 @@
   "private": true,
   "homepage": "https://filswa.github.io/travel-destination-keeper/",
   "dependencies": {
-    "gh-pages": "^2.2.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.0.0"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-scripts": "^5.0.1"
   },
   "scripts": {
     "predeploy": "npm run build",
@@ -31,5 +30,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
   }
 }
