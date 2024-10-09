@@ -11,12 +11,17 @@ const WelcomeInfo = () => {
     <div className="welcomeTextContainer">
       <p>Welcome to travel destination keeper!</p>
 
-      <p>Do you like travelling? Exploring new places?<br></br>Of course, we all do! :)</p>
+      <p>
+        Do you like travelling? Exploring new places?
+        <br></br>Of course, we all do! :)
+      </p>
 
-      <p>This simple app allows you to search for places and add them to your "to visit" list. Feel free to move around and explore!</p>
+      <p>This simple app allows you to search for places and add them to your "to visit" list.
+        You can also travel by clicking the item on the list. Try it!
+      </p>
 
       <p>The app uses Google Maps Javascript API as a provider for Map</p>
-      <p>source: <a href="https://github.com/filswa/travel-destination-keeper"> https://github.com/filswa/travel-destination-keeper</a></p>
+      <p>source: <a href="https://github.com/filswa/travel-destination-keeper"> github/travel-destination-keeper</a></p>
     </div>
   </div>
   )

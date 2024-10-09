@@ -4,11 +4,11 @@ import { geocodeByAddress, getLatLng } from '../util/GeocodeByAdress';
 const SearchBar = ({autocomplete, handleAddPlace}) => {
 	const [query, setQuery] = useState("");
 	const [pos, setPos] = useState({});
+	const isValid = query;
 
 	const handlePlaceSelect = useCallback(async () => {
 		const address = autocomplete.getPlace().formatted_address;
 		const pos = await getPos(address)
-
 		if (address) {
 			setQuery(address);
 			setPos(pos);
@@ -19,12 +19,8 @@ const SearchBar = ({autocomplete, handleAddPlace}) => {
         setTimeout(()=>{
 			setQuery("");
 			autocomplete && autocomplete.addListener('place_changed', handlePlaceSelect); 
-		}, 1000)
+		}, 0)
     },[autocomplete, handlePlaceSelect]);
-
-	const handleChange = (event) => {
-		setQuery(event.tartget);
-	}
 
 	const handleClick = () => {
 		let placeData = {
@@ -55,12 +51,14 @@ const SearchBar = ({autocomplete, handleAddPlace}) => {
 				name="query"
 				placeholder="Search for places to visit..."
 				value={query}
-				onChange={handleChange}
+				onChange={(event) => setQuery(event.tartget)}
 			/>
 			
 			<button
 				id="addButton"
 				type="submit"
+				className={isValid ? 'validButton' : 'invalidButton'}
+				disabled={!isValid}
 				onClick={handleClick}
 			>Add</button>
 		</div>
